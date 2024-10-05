@@ -298,7 +298,8 @@ public class PrometeoCarController : MonoBehaviour
         // Save the local velocity of the car in the z axis. Used to know if the car is going forward or backwards.
         localVelocityZ = transform.InverseTransformDirection(carRigidbody.velocity).z;
 
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance)
+            && this.carRigidbody.velocity.y < jumpForce - 1;
         //CAR PHYSICS
 
         /*
@@ -927,7 +928,7 @@ public class PrometeoCarController : MonoBehaviour
     {
         Debug.Log("Jump Force: " + jumpForce);
         Vector3 newVelocity = carRigidbody.velocity; // Get the current velocity
-        newVelocity.y = jumpForce; // Set the vertical component to jumpForce
+        newVelocity.y = jumpForce / (0.03f*carRigidbody.velocity.magnitude+1); // Set the vertical component to jumpForce
         carRigidbody.velocity = newVelocity; // Assign the new velocity back
     }
 
