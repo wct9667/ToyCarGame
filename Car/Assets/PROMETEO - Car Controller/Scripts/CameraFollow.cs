@@ -22,6 +22,8 @@ public class CameraFollow : MonoBehaviour
     private float rotationY = 0f;
     private float rotationX = 0f;
 
+    public float minHeight = 1f; // Minimum height above the ground
+
     void Start()
     {
         // Set the initial rotation values
@@ -39,11 +41,19 @@ public class CameraFollow : MonoBehaviour
         // Set the target position behind the car
         Vector3 targetPosition = carTransform.position + carTransform.TransformDirection(offset);
 
+        // Perform a raycast to determine if the camera is going below the ground or into an obstacle
+        RaycastHit hit;
+        if (Physics.Raycast(carTransform.position, (targetPosition - carTransform.position).normalized, out hit, offset.magnitude))
+        {
+            // Adjust the target position to stay above the hit point
+            targetPosition.y = Mathf.Max(hit.point.y + minHeight, targetPosition.y);
+        }
+
         // Smoothly move the camera to the target position
         transform.position = Vector3.Lerp(transform.position, targetPosition, followSpeed * Time.deltaTime);
 
         // Always look at the car
-        transform.LookAt(carTransform.position + Vector3.up * 1.5f); // Slightly above the car's center for a better view
+        transform.LookAt(carTransform.position + carTransform.up * 1.5f); // Use car's up direction to account for car tilt
 
         // Handle mouse input to adjust the rotation around the car
         HandleMouseRotation();
