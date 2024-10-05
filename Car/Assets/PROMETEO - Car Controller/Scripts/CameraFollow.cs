@@ -23,12 +23,14 @@ public class CameraFollow : MonoBehaviour {
 	{
 		// Ensure the camera stays behind the car's forward direction with adjustable distance and height
 		Vector3 _targetPos = carTransform.position - carTransform.forward * distanceBehindCar + carTransform.up * heightAboveCar;
-    
-		// Move the camera smoothly to the target position
-		transform.position = Vector3.Lerp(transform.position, _targetPos, followSpeed * Time.deltaTime);
+        _targetPos.y = carTransform.position.y + heightAboveCar;
+        // Move the camera smoothly to the target position
+        transform.position = Vector3.Lerp(transform.position, _targetPos, followSpeed * Time.deltaTime);
+        // Rotate the camera to always look at the car from behind
+        Vector3 distanceVector = carTransform.position - transform.position;
+		distanceVector.y = -heightAboveCar;
+        Quaternion _rot = Quaternion.LookRotation(distanceVector, Vector3.up);
 
-		// Rotate the camera to always look at the car from behind
-		Quaternion _rot = Quaternion.LookRotation(carTransform.position - transform.position, Vector3.up);
-		transform.rotation = Quaternion.Lerp(transform.rotation, _rot, lookSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _rot, lookSpeed * Time.deltaTime);
 	}
 }
