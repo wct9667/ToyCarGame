@@ -1783,11 +1783,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f6d3ff905719c845a4a6404bc4d4162, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carTransform: {fileID: 1506673792}
+  carTransform: {fileID: 1976309382}
   followSpeed: 15
   lookSpeed: 75
   distanceBehindCar: 33
   heightAboveCar: 9
+  mouseSensitivity: 3
 --- !u!81 &474480476
 AudioListener:
   m_ObjectHideFlags: 0
