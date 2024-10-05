@@ -374,14 +374,14 @@ public class PrometeoCarController : MonoBehaviour
     // This method converts the car speed data from float to string, and then set the text of the UI carSpeedText with this value.
     public void CarSpeedUI(){
 
-      if(useUI){
-          try{
-            float absoluteCarSpeed = Mathf.Abs(carSpeed);
-            carSpeedText.text = Mathf.RoundToInt(absoluteCarSpeed).ToString();
-          }catch(Exception ex){
-            Debug.LogWarning(ex);
-          }
-      }
+      //if(useUI){
+      //    try{
+      //      float absoluteCarSpeed = Mathf.Abs(carSpeed);
+      //      carSpeedText.text = Mathf.RoundToInt(absoluteCarSpeed).ToString();
+      //    }catch(Exception ex){
+      //      Debug.LogWarning(ex);
+      //    }
+      //}
 
     }
 
