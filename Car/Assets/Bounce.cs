@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bounce : MonoBehaviour
@@ -9,20 +6,25 @@ public class Bounce : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    
+
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.layer == 3)
         {
-            other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.up * bouncePower;
+            Rigidbody otherRigidbody = other.gameObject.GetComponent<Rigidbody>();
+
+            // Preserve current horizontal velocities and add to the vertical component
+            Vector3 currentVelocity = otherRigidbody.velocity;
+            currentVelocity.y += bouncePower; // Add bouncePower only to the vertical component
+            otherRigidbody.velocity = currentVelocity; // Assign the modified velocity back
         }
     }
 }
