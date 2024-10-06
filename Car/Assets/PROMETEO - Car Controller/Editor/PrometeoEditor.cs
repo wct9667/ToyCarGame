@@ -149,7 +149,7 @@ public class PrometeoEditor : Editor
         handbrakeDriftMultiplier.intValue = EditorGUILayout.IntSlider("Drift Multiplier:", handbrakeDriftMultiplier.intValue, 1, 10);
         EditorGUILayout.PropertyField(bodyMassCenter, new GUIContent("Mass Center of Car: "));
         jumpForce.floatValue = EditorGUILayout.Slider("Jump Force:", jumpForce.floatValue, 5f, 20f);
-        groundCheckDistance.floatValue = EditorGUILayout.Slider("Ground Check Distance:", groundCheckDistance.floatValue, 0.1f, 1f);
+        groundCheckDistance.floatValue = EditorGUILayout.Slider("Ground Check Distance:", groundCheckDistance.floatValue, 0.5f, 5f);
 
         //
         //

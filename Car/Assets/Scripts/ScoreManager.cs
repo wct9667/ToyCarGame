@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Mime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] private UnityEngine.UI.Image[] _images;
+    public TextMeshProUGUI timerText; // Reference to the TextMeshProUGUI component
+    private float timeRemaining = 9 * 60; // Start time in seconds (9 minutes)
 
-    private int score= 0;
+    private bool timerIsRunning = true;
+
+    private int score = 0;
     void Start()
     {
         foreach (UnityEngine.UI.Image image in _images)
@@ -17,6 +19,39 @@ public class ScoreManager : MonoBehaviour
         }
 
         _images[0].enabled = true;
+    }
+
+    void Update()
+    {
+        if (timerIsRunning)
+        {
+            if (timeRemaining > 1)
+            {
+                // Decrease the time remaining
+                timeRemaining -= Time.deltaTime;
+
+                // Convert the remaining time to minutes and seconds
+                int minutes = Mathf.FloorToInt(timeRemaining / 60);
+                int seconds = Mathf.FloorToInt(timeRemaining % 60);
+
+                // Update the timer text in the format "mm:ss"
+                timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+                if (score == 9)
+                {
+                    SceneManager.LoadScene("WinScreen");
+                }
+            }
+            else
+            {
+                // If the timer reaches zero, stop the timer
+                timeRemaining = 0;
+                timerIsRunning = false;
+
+                // Optionally: Do something when the timer reaches zero
+                Debug.Log("Time's up!");
+                SceneManager.LoadScene("LoseScreen");
+            }
+        }
     }
 
     public void ChangeScore()
