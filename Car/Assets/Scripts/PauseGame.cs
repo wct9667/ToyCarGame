@@ -7,6 +7,7 @@ public class PauseGame : MonoBehaviour
     public bool paused = false;
     public Canvas pauseScreen;
     public Button resumeButton;
+    public Button restartButton;
     public Button quitButton;
 
 
