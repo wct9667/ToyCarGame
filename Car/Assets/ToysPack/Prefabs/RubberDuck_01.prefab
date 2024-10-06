@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 48259713181974191}
   - component: {fileID: 9074882214199772313}
   - component: {fileID: 3372347436690880608}
-  - component: {fileID: -6095828693834735174}
   - component: {fileID: 5476143283240021670}
+  - component: {fileID: 2709033615933493905}
+  - component: {fileID: 6343918619822312999}
   m_Layer: 7
   m_Name: RubberDuck_01
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3958710445132123324}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: -0.00000004371139, z: 9.055528e-16, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
@@ -85,23 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-6095828693834735174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3958710445132123324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f74b80d13d42974aaedb6586e0016c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyObjectOnCollision: 1
-  voidEventChannel: {fileID: 11400000, guid: 301e673a01003614d94bb03acd99b614, type: 2}
-  bobbingHeight: 0.5
-  bobbingSpeed: 2
-  spinSpeed: 100
 --- !u!64 &5476143283240021670
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -124,3 +108,45 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4201434375035617612, guid: c64847829113b3f42975917b8f6a9a80, type: 3}
+--- !u!54 &2709033615933493905
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3958710445132123324}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &6343918619822312999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3958710445132123324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1470611dfb331b44c9266ecd9d9a7a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bobbingHeight: 0.5
+  bobbingSpeed: 2
+  spinSpeed: 100
