@@ -44,7 +44,7 @@ public class PrometeoCarController : MonoBehaviour
                                    // however, you must notice that the higher this value is, the more unstable the car becomes.
                                    // Usually the y value goes from 0 to 1.5.
     [Range(0, 10)]
-    public float groundCheckDistance = 2.0f;
+    public float groundCheckDistance = 1.0f;
     [Range(5, 20)]
     public float jumpForce = 15;
 
@@ -581,7 +581,7 @@ public class PrometeoCarController : MonoBehaviour
     {
         //If the forces aplied to the rigidbody in the 'x' asis are greater than
         //3f, it means that the car is losing traction, then the car will start emitting particle systems.
-        if (Mathf.Abs(localVelocityX) > 2.5f)
+        if (Mathf.Abs(localVelocityX) > 2.5f && isGrounded)
         {
             isDrifting = true;
             DriftCarPS();
@@ -636,7 +636,7 @@ public class PrometeoCarController : MonoBehaviour
     {
         //If the forces aplied to the rigidbody in the 'x' asis are greater than
         //3f, it means that the car is losing traction, then the car will start emitting particle systems.
-        if (Mathf.Abs(localVelocityX) > 12.5f)
+        if (Mathf.Abs(localVelocityX) > 12.5f && isGrounded)
         {
             isDrifting = true;
             DriftCarPS();
@@ -700,7 +700,7 @@ public class PrometeoCarController : MonoBehaviour
     // usually every 0.1f when the user is not pressing W (throttle), S (reverse) or Space bar (handbrake).
     public void DecelerateCar()
     {
-        if (Mathf.Abs(localVelocityX) > 2.5f)
+        if (Mathf.Abs(localVelocityX) > 2.5f && isGrounded)
         {
             isDrifting = true;
             DriftCarPS();
@@ -772,7 +772,7 @@ public class PrometeoCarController : MonoBehaviour
         }
         //If the forces aplied to the rigidbody in the 'x' asis are greater than
         //3f, it means that the car lost its traction, then the car will start emitting particle systems.
-        if (Mathf.Abs(localVelocityX) > 2.5f)
+        if (Mathf.Abs(localVelocityX) > 2.5f && isGrounded)
         {
             isDrifting = true;
         }
@@ -809,20 +809,26 @@ public class PrometeoCarController : MonoBehaviour
     // depending on the value of the bool variables 'isDrifting' and 'isTractionLocked'.
     public void DriftCarPS()
     {
-
         if (useEffects)
         {
             try
             {
-                if (isDrifting)
+                if (isDrifting && isGrounded)
                 {
                     RLWParticleSystem.Play();
                     RRWParticleSystem.Play();
                 }
-                else if (!isDrifting)
+                else if (!isDrifting || !isGrounded)
                 {
+                    isDrifting = false;
                     RLWParticleSystem.Stop();
                     RRWParticleSystem.Stop();
+                    if (!isGrounded )
+                    {
+                        RLWTireSkid.emitting = false;
+                        RRWTireSkid.emitting = false;
+                        return;
+                    }
                 }
             }
             catch (Exception ex)
