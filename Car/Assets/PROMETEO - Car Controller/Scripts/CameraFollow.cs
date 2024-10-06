@@ -19,6 +19,9 @@ public class CameraFollow : MonoBehaviour
     public float heightAboveCar = 5;
 
     public float mouseSensitivity = 3f;
+
+    public float mouseScrollSpeed = 3f;
+
     private float rotationY = 0f;
     private float rotationX = 0f;
 
@@ -57,6 +60,9 @@ public class CameraFollow : MonoBehaviour
 
         // Handle mouse input to adjust the rotation around the car
         HandleMouseRotation();
+
+        // Handle scroll input to adjust the camera distance
+        HandleScroll();
     }
 
     void HandleMouseRotation()
@@ -71,5 +77,11 @@ public class CameraFollow : MonoBehaviour
 
         // Clamp the vertical rotation to avoid excessive camera movement
         rotationX = Mathf.Clamp(rotationX, -10f, 60f); // Adjust the min and max values for desired vertical angle limits
+    }
+
+    void HandleScroll()
+    {
+        distanceBehindCar -= Input.mouseScrollDelta.y * mouseScrollSpeed;
+        distanceBehindCar = Mathf.Clamp(distanceBehindCar, 15, 50);
     }
 }
