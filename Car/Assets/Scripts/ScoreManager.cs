@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.Mime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -12,7 +10,7 @@ public class ScoreManager : MonoBehaviour
 
     private bool timerIsRunning = true;
 
-    private int score= 0;
+    private int score = 0;
     void Start()
     {
         foreach (UnityEngine.UI.Image image in _images)
@@ -27,7 +25,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (timerIsRunning)
         {
-            if (timeRemaining > 0)
+            if (timeRemaining > 1)
             {
                 // Decrease the time remaining
                 timeRemaining -= Time.deltaTime;
@@ -40,7 +38,7 @@ public class ScoreManager : MonoBehaviour
                 timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
                 if (score == 9)
                 {
-
+                    SceneManager.LoadScene("WinScreen");
                 }
             }
             else
@@ -51,6 +49,7 @@ public class ScoreManager : MonoBehaviour
 
                 // Optionally: Do something when the timer reaches zero
                 Debug.Log("Time's up!");
+                SceneManager.LoadScene("LoseScreen");
             }
         }
     }
