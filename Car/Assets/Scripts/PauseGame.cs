@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseGame : MonoBehaviour
@@ -101,5 +102,6 @@ public class PauseGame : MonoBehaviour
         paused = false;
         Time.timeScale = 1f;
         pauseScreen.enabled = paused;
+        SceneManager.LoadScene("StartScreen");
     }
 }
