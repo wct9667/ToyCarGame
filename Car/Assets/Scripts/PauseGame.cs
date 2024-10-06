@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseGame : MonoBehaviour
@@ -9,6 +8,7 @@ public class PauseGame : MonoBehaviour
     public Button resumeButton;
     public Button restartButton;
     public Button quitButton;
+    public GameObject car;
 
 
     // Start is called before the first frame update
@@ -16,6 +16,13 @@ public class PauseGame : MonoBehaviour
     {
         paused = false;
         pauseScreen.enabled = paused;
+
+        // Add listener to the resume button to call TogglePause when clicked
+        resumeButton.onClick.AddListener(TogglePause);
+
+        // Optionally, you can add listeners for other buttons as well:
+        restartButton.onClick.AddListener(Respawn);
+        quitButton.onClick.AddListener(QuitToMenu);
     }
 
     // Update is called once per frame
@@ -69,12 +76,24 @@ public class PauseGame : MonoBehaviour
 
     public void Respawn()
     {
-        //loading.text = ("Loading Level: " + SceneManager.GetActiveScene().name);
-        //paused = false;
-        //Time.timeScale = 1f;
-        //pauseScreen.enabled = paused;
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Reset the car's position to the origin (or any specific respawn point)
+        car.transform.position = Vector3.zero;
 
+        // Reset the car's rotation to zero (upright position)
+        car.transform.rotation = Quaternion.identity;
+
+        // Optionally, reset the car's Rigidbody velocity to prevent it from continuing its motion after respawn
+        Rigidbody carRigidbody = car.GetComponent<Rigidbody>();
+        if (carRigidbody != null)
+        {
+            carRigidbody.velocity = Vector3.zero;
+            carRigidbody.angularVelocity = Vector3.zero;
+        }
+
+        // Unpause the game if needed
+        paused = false;
+        Time.timeScale = 1f;
+        pauseScreen.enabled = paused;
     }
 
     public void QuitToMenu()
@@ -82,6 +101,5 @@ public class PauseGame : MonoBehaviour
         paused = false;
         Time.timeScale = 1f;
         pauseScreen.enabled = paused;
-        SceneManager.LoadScene("StartScreen");
     }
 }
