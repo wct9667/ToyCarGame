@@ -44,7 +44,7 @@ public class PrometeoCarController : MonoBehaviour
                                    // however, you must notice that the higher this value is, the more unstable the car becomes.
                                    // Usually the y value goes from 0 to 1.5.
     [Range(0, 10)]
-    public float groundCheckDistance = 0.5f;
+    public float groundCheckDistance = 2.0f;
     [Range(5, 20)]
     public float jumpForce = 15;
 
@@ -298,7 +298,7 @@ public class PrometeoCarController : MonoBehaviour
         // Save the local velocity of the car in the z axis. Used to know if the car is going forward or backwards.
         localVelocityZ = transform.InverseTransformDirection(carRigidbody.velocity).z;
 
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance)
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, this.gameObject.layer)
             && this.carRigidbody.velocity.y < jumpForce - 1;
         //CAR PHYSICS
 
@@ -410,15 +410,9 @@ public class PrometeoCarController : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0)) // 0 is the left mouse button
             {
-                Debug.Log("Left mouse button clicked");
                 if (isGrounded)
                 {
-                    Debug.Log("Car is grounded, jumping!");
                     JumpCar();
-                }
-                else
-                {
-                    Debug.Log("Car is NOT grounded");
                 }
             }
 
@@ -642,7 +636,7 @@ public class PrometeoCarController : MonoBehaviour
     {
         //If the forces aplied to the rigidbody in the 'x' asis are greater than
         //3f, it means that the car is losing traction, then the car will start emitting particle systems.
-        if (Mathf.Abs(localVelocityX) > 2.5f)
+        if (Mathf.Abs(localVelocityX) > 12.5f)
         {
             isDrifting = true;
             DriftCarPS();

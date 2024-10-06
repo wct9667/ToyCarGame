@@ -19,6 +19,7 @@ public class CameraFollow : MonoBehaviour
     public float heightAboveCar = 5;
 
     public float mouseSensitivity = 3f;
+    public float mouseScrollSpeed = 3f;
     private float rotationY = 0f;
     private float rotationX = 0f;
 
@@ -51,6 +52,9 @@ public class CameraFollow : MonoBehaviour
 
         // Handle mouse input to adjust the rotation around the car
         HandleMouseRotation();
+
+        // Handle scroll input to adjust the camera distance
+        HandleScroll();
 
         // Handle occlusion - make obstructing objects transparent
         HandleOcclusion();
@@ -139,6 +143,12 @@ public class CameraFollow : MonoBehaviour
         Color color = material.color;
         color.a = alpha;
         material.color = color;
+    }
+
+    void HandleScroll()
+    {
+        distanceBehindCar -= Input.mouseScrollDelta.y * mouseScrollSpeed;
+        distanceBehindCar = Mathf.Clamp(distanceBehindCar, 15, 50);
     }
 }
 
