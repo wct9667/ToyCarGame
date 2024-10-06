@@ -1871,7 +1871,6 @@ MonoBehaviour:
   distanceBehindCar: 33
   heightAboveCar: 9
   mouseSensitivity: 3
-  mouseScrollSpeed: 3
   minHeight: 1
 --- !u!81 &474480476
 AudioListener:
@@ -3748,9 +3747,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 642287924342879162, guid: 79d0ca8b77e301442afdb49f102e8aed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1976309385}
-    - targetCorrespondingSourceObject: {fileID: 642287924342879162, guid: 79d0ca8b77e301442afdb49f102e8aed, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1976309386}
   m_SourcePrefab: {fileID: 100100000, guid: 79d0ca8b77e301442afdb49f102e8aed, type: 3}
 --- !u!1 &915291261 stripped
 GameObject:
@@ -4774,6 +4770,7 @@ MonoBehaviour:
   resumeButton: {fileID: 1350491883}
   restartButton: {fileID: 1900421776}
   quitButton: {fileID: 1296420204}
+  car: {fileID: 179613733}
 --- !u!1 &1286172242 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2442991419721924175, guid: 3e43bfdec94035546848926b0f5b307a, type: 3}
@@ -8023,23 +8020,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyObjectOnCollision: 1
   voidEventChannel: {fileID: 11400000, guid: 301e673a01003614d94bb03acd99b614, type: 2}
---- !u!114 &1976309386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 179613733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49f36a8ec8a678b46840ef66ea7f33da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  paused: 0
-  pauseScreen: {fileID: 354523814}
-  resumeButton: {fileID: 1350491883}
-  restartButton: {fileID: 1900421776}
-  quitButton: {fileID: 1296420204}
 --- !u!1 &1986242674
 GameObject:
   m_ObjectHideFlags: 0
@@ -9375,9 +9355,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 705507995}
+  - {fileID: 1285137711}
   - {fileID: 893497456}
   - {fileID: 12012655}
-  - {fileID: 1285137711}
   - {fileID: 1438217781}
   - {fileID: 474480478}
   - {fileID: 960087039}

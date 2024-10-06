@@ -926,10 +926,14 @@ public class PrometeoCarController : MonoBehaviour
 
     public void JumpCar()
     {
-        Debug.Log("Jump Force: " + jumpForce);
-        Vector3 newVelocity = carRigidbody.velocity; // Get the current velocity
-        newVelocity.y = jumpForce / (0.03f*carRigidbody.velocity.magnitude+1); // Set the vertical component to jumpForce
-        carRigidbody.velocity = newVelocity; // Assign the new velocity back
+        if (Time.timeScale == 1f)
+        {
+            Debug.Log("Jump Force: " + jumpForce);
+            Vector3 newVelocity = carRigidbody.velocity; // Get the current velocity
+            newVelocity.y = jumpForce / (0.03f * carRigidbody.velocity.magnitude + 1); // Set the vertical component to jumpForce
+            carRigidbody.velocity = newVelocity; // Assign the new velocity back
+        }
+
     }
 
 }
