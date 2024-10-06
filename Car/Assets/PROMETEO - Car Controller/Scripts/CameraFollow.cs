@@ -33,6 +33,10 @@ public class CameraFollow : MonoBehaviour
         Vector3 angles = transform.eulerAngles;
         rotationY = angles.y;
         rotationX = angles.x;
+        // Explicitly enable shader keywords to ensure they are not stripped
+        Shader.EnableKeyword("_ALPHABLEND_ON");
+        Shader.DisableKeyword("_ALPHATEST_ON");
+        Shader.DisableKeyword("_ALPHAPREMULTIPLY_ON");
     }
 
     void LateUpdate()
