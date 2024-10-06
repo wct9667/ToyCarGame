@@ -3,16 +3,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneLoader : MonoBehaviour
+public class WinLoseScreen : MonoBehaviour
 {
     [SerializeField] private string firstLevelName = "SampleScene";
-    public Button resumeButton;
+    public Button restartScreen;
     public Button quitButton;
     [SerializeField] private TextMeshProUGUI loading;
 
     private void Awake()
     {
-        resumeButton.onClick.AddListener(LoadFirstLevel);
+        restartScreen.onClick.AddListener(LoadFirstLevel);
         quitButton.onClick.AddListener(Quit);
         loading.text = "";
     }
@@ -32,5 +32,4 @@ public class SceneLoader : MonoBehaviour
     {
         Application.Quit();
     }
-
 }
