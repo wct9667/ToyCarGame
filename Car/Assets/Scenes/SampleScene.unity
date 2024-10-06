@@ -2992,7 +2992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2378809726565548265, guid: 4a384ebe561ad494d9f22bd7921e6491, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 77.26
+      value: 74.6
       objectReference: {fileID: 0}
     - target: {fileID: 2378809726565548265, guid: 4a384ebe561ad494d9f22bd7921e6491, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4134,6 +4134,10 @@ PrefabInstance:
       propertyPath: tireScreechSound
       value: 
       objectReference: {fileID: 2146267334}
+    - target: {fileID: 627556911, guid: 79d0ca8b77e301442afdb49f102e8aed, type: 3}
+      propertyPath: groundCheckDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 261786959625234688, guid: 79d0ca8b77e301442afdb49f102e8aed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9426,7 +9430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2981905426834065747, guid: 08969be1fac40c344a3246465bf43109, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 48.0948
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 2981905426834065747, guid: 08969be1fac40c344a3246465bf43109, type: 3}
       propertyPath: m_LocalPosition.y
