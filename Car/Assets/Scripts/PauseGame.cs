@@ -73,11 +73,6 @@ public class PauseGame : MonoBehaviour
         {
             Time.timeScale = 1f;
         }
-        resumeButton.onClick.AddListener(() =>
-        {
-            Debug.Log("Resume button clicked");
-            TogglePause();
-        });
     }
 
     public void Respawn()
