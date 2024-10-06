@@ -33,6 +33,7 @@ public class CameraFollow : MonoBehaviour
         Vector3 angles = transform.eulerAngles;
         rotationY = angles.y;
         rotationX = angles.x;
+
         // Explicitly enable shader keywords to ensure they are not stripped
         Shader.EnableKeyword("_ALPHABLEND_ON");
         Shader.DisableKeyword("_ALPHATEST_ON");
@@ -114,8 +115,8 @@ public class CameraFollow : MonoBehaviour
     // Function to set the transparency of an object
     void SetObjectTransparency(Renderer renderer, float alpha)
     {
-        // Get the material of the renderer to modify its properties
-        Material material = renderer.material;
+        // Create a new instance of the material to avoid modifying shared material
+        Material material = new Material(renderer.material);
 
         // Change the rendering mode to transparent if needed
         if (alpha < 1.0f)
@@ -147,6 +148,9 @@ public class CameraFollow : MonoBehaviour
         Color color = material.color;
         color.a = alpha;
         material.color = color;
+
+        // Apply the modified material instance to the renderer
+        renderer.material = material;
     }
 
     void HandleScroll()
